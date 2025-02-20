@@ -1,0 +1,15 @@
+{% extends 'jobs/base.html' %}
+{% block content %}
+<h2>Your Inbox</h2>
+<ul>
+    {% for msg in messages %}
+    <li>
+        <strong>From:</strong> {{ msg.sender.username }} <br>
+        <strong>Message:</strong> {{ msg.content }} <br>
+        <strong>Sent on:</strong> {{ msg.sent_date|date:"Y-m-d H:i" }}
+    </li>
+    {% empty %}
+    <li>No messages.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'jobs/base.html' %}
+{% block content %}
+<h2>Job Listings</h2>
+<ul>
+    {% for job in jobs %}
+    <li>
+        <a href="{% url 'job_detail' job.id %}">{{ job.title }}</a>
+        at {{ job.employer.company_name }} (Posted on {{ job.posted_date|date:"Y-m-d" }})
+    </li>
+    {% empty %}
+    <li>No job listings available at the moment.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

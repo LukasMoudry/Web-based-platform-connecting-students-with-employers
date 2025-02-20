@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Internship & Job Matching Platform</title>
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'home' %}">Job Platform</a></h1>
+        <nav>
+            {% if user.is_authenticated %}
+                <span>Welcome, {{ user.username }}!</span>
+                <a href="{% url 'job_list' %}">Jobs</a>
+                <a href="{% url 'inbox' %}">Inbox</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register_student' %}">Register as Student</a>
+                <a href="{% url 'register_employer' %}">Register as Employer</a>
+            {% endif %}
+        </nav>
+        {% if messages %}
+          <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+    </header>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
